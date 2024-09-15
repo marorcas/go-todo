@@ -11,7 +11,7 @@
 
 ## Description
 
-A full-stack application that allows you to track, add, and delete tasks as well as manage categories of tasks. Backend built with Go and MongoDB, frontend built with React. 
+A full-stack application that allows you to track, add, and delete tasks. Backend built with Go and MongoDB, frontend built with React. 
 
 Check out my Java/MySQL version of this app [here](https://github.com/marorcas/to-do-app).
 
