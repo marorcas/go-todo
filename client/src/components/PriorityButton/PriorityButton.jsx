@@ -13,12 +13,8 @@ const PriorityButton = () => {
         setPriority(priorityStatus);
 
         if (priorityStatus) {
-            getAllTasks()
-                .then((data) => {
-                    const updatedData = data.filter((task) => task.priority);
-                    setTasks(updatedData);
-                })
-                .catch((e) => console.warn(e));
+            const updatedData = tasks.filter((task) => task.priority);
+            setTasks(updatedData);
         } else {
             getAllTasks()
                 .then((data) => {

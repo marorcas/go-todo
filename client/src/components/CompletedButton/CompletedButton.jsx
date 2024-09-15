@@ -4,7 +4,7 @@ import { TaskContext } from "../../contexts/TaskContextProvider";
 import { getAllTasks } from "../../services/task-services";
 
 const CompletedButton = () => {
-    const { tasks, setTasks } = useContext(TaskContext);
+    const { setTasks } = useContext(TaskContext);
 
     const [status, setStatus] = useState(false);
 
