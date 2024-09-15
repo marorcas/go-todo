@@ -1,0 +1,17 @@
+.PriorityButton {
+    border-radius: 5px 5px 0 0;
+    border: 1px solid aqua;
+    border-bottom: none;
+    background-color: rgb(aqua, 0.5);
+    position: relative;
+    overflow: hidden;
+    transition: height 0.3s ease; 
+}
+
+.PrioritySelected {
+    height: 60px;
+}
+
+.PriorityUnselected {
+    height: 40px;
+}

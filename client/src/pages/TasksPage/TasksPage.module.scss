@@ -1,0 +1,62 @@
+@use "../../scss/partials/queries" as q;
+
+.TasksPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 2em 0;
+}
+
+.TasksContainer {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    border-bottom: 1px solid black;
+
+    @include q.desktop {
+        width: 70%;
+    }
+
+    @include q.desktop-lg {
+        width: 50%;
+    }
+
+    @include q.desktop-xlg {
+        width: 40%;
+    }
+}
+
+.FilterTabs {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 0.5em;
+    height: 60px;
+    width: 90%;
+
+    @include q.desktop {
+        width: 65%;
+    }
+
+    @include q.desktop-lg {
+        width: 45%;
+    }
+
+    @include q.desktop-xlg {
+        width: 35%;
+    }
+}
+
+.Links {
+    display: flex;
+    gap: 2em;
+    padding: 2em;
+}
+
+.ClearButton {
+    padding: 1em;
+    margin: 3em;
+}

@@ -1,0 +1,84 @@
+@use "../../scss/partials/queries" as q;
+
+.TaskCard {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid rgb(black, 0.5);
+    border-bottom: none;
+    background-color: #eef0f2;
+}
+
+.Task {
+    font-weight: normal;
+}
+
+.TaskInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    width: 54%;
+    text-decoration: none;
+    color: black;
+    padding-left: 1.5em;
+    border-left: 1px solid rgb(red, 0.5);
+
+    @include q.tablet {
+        width: 55%;
+    }
+
+    @include q.desktop {
+        width: 57%;
+    }
+}
+
+.CheckboxContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    border-right: 2px solid rgb(red, 0.5);
+}
+
+.Checkbox {
+    accent-color: white;
+}
+
+.HighlighterContainer {
+    display: flex;
+    width: 10%;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+
+    :hover {
+        cursor: pointer;
+        color: aqua;
+    }
+}
+
+.Priority {
+    background-color: aqua;
+}
+
+.Completed {
+    text-decoration: line-through;
+    text-decoration-thickness: 3px;
+    text-decoration-color: greenyellow;
+}
+
+.DeleteContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+
+    :hover {
+        cursor: pointer;
+        color: red;
+    }
+}
