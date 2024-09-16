@@ -1,43 +1,38 @@
 import { useContext, useState } from "react";
 import styles from "./CompletedButton.module.scss";
-import { TaskContext } from "../../contexts/TaskContextProvider";
-import { getAllTasks } from "../../services/task-services";
+import { TabSelectionContext } from "../../contexts/TabSelectionContextProvider";
+import { TabSelection } from "../../enums/TabSelection";
 
 const CompletedButton = () => {
-    const { setTasks } = useContext(TaskContext);
+    const { setSelectedTab, completedTab } = useContext(TabSelectionContext);
 
-    const [status, setStatus] = useState(false);
+    const [selected, setSelected] = useState(false);
 
-    const toggleCompleted = async () => {
-        const taskStatus = !status;
-        setStatus(taskStatus);
+    const toggleCompleted = () => {
+        const selectedStatus = !selected;
+        setSelected(selectedStatus);
 
-        if (taskStatus) {
-            getAllTasks()
-                .then((data) => {
-                    const updatedData = data.filter((task) => task.status);
-                    setTasks(updatedData);
-                })
-                .catch((e) => console.warn(e));
+        console.log(selectedStatus);
+
+        if (selectedStatus) {
+            setSelectedTab(TabSelection.COMPLETED);
         } else {
-           getAllTasks()
-                .then((data) => {
-                    const updatedData = data.filter((task) => !task.status);
-                    setTasks(updatedData);
-                })
-                .catch((e) => console.warn(e));
+            setSelectedTab(TabSelection.NONE);
         }
     }
 
     const completedClassNames = [
         styles.CompletedButton,
-        status ? styles.CompletedSelected : styles.CompletedUnselected
+        completedTab ? styles.CompletedSelected : styles.CompletedUnselected
       ]
         .filter(Boolean)
         .join(' ');
 
     return (
-        <button className={completedClassNames} onClick={toggleCompleted}>
+        <button 
+            className={completedClassNames} 
+            onClick={toggleCompleted}
+        >
             Completed
         </button>
     );

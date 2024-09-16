@@ -1,34 +1,29 @@
 import { useContext, useState } from "react";
 import styles from "./PriorityButton.module.scss";
-import { TaskContext } from "../../contexts/TaskContextProvider";
-import { getAllTasks } from "../../services/task-services";
+import { TabSelectionContext } from "../../contexts/TabSelectionContextProvider";
+import { TabSelection } from "../../enums/TabSelection";
 
 const PriorityButton = () => {
-    const { tasks, setTasks } = useContext(TaskContext);
+    const { setSelectedTab, priorityTab } = useContext(TabSelectionContext);
 
-    const [priority, setPriority] = useState(false);
+    const [selected, setSelected] = useState(false);
 
-    const togglePriority = async () => {
-        const priorityStatus = !priority;
-        setPriority(priorityStatus);
+    const togglePriority = () => {
+        const selectedStatus = !selected;
+        setSelected(selectedStatus);
 
-        if (priorityStatus) {
-            const updatedData = tasks.filter((task) => task.priority);
-            setTasks(updatedData);
+        console.log(selectedStatus);
+
+        if (selectedStatus) {
+            setSelectedTab(TabSelection.PRIORITY);
         } else {
-            getAllTasks()
-                .then((data) => {
-                    const updatedData = data.filter((task) => !task.status);
-                        setTasks(updatedData);
-                })
-                .catch((e) => console.warn(e));
+            setSelectedTab(TabSelection.NONE);
         }
     }
 
-
     const priorityClassNames = [
         styles.PriorityButton,
-        priority ? styles.PrioritySelected : styles.PriorityUnselected
+        priorityTab ? styles.PrioritySelected : styles.PriorityUnselected
       ]
         .filter(Boolean)
         .join(' ');

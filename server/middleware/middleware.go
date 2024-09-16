@@ -70,7 +70,6 @@ func init() {
 
 // GetAllTask get all the task route
 func GetAllTask(w http.ResponseWriter, r *http.Request) {
-	// w.Header().Set("Content-Type", "application/x-www-form-urlencoded")
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Methods", "GET")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
