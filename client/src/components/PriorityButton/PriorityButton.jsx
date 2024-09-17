@@ -1,23 +1,28 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./PriorityButton.module.scss";
 import { TabSelectionContext } from "../../contexts/TabSelectionContextProvider";
 import { TabSelection } from "../../enums/TabSelection";
 
 const PriorityButton = () => {
-    const { setSelectedTab, priorityTab } = useContext(TabSelectionContext);
-
-    const [selected, setSelected] = useState(false);
+    const { 
+        setSelectedTab, 
+        priorityTab, 
+        setPriorityTab,
+        completedTab,
+        setCompletedTab 
+    } = useContext(TabSelectionContext);
 
     const togglePriority = () => {
-        const selectedStatus = !selected;
-        setSelected(selectedStatus);
+        const priorityTabValue = !priorityTab;
+        setPriorityTab(priorityTabValue);
 
-        console.log(selectedStatus);
-
-        if (selectedStatus) {
+        if (priorityTabValue) {
             setSelectedTab(TabSelection.PRIORITY);
+            setCompletedTab(false);
         } else {
-            setSelectedTab(TabSelection.NONE);
+            if (!completedTab) {
+                setSelectedTab(TabSelection.NONE);
+            }
         }
     }
 

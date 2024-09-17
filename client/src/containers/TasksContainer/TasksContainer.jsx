@@ -7,11 +7,7 @@ import { TabSelection } from "../../enums/TabSelection";
 
 const TasksContainer = () => {
     const { tasks, setTasks } = useContext(TaskContext);
-    const { 
-        selectedTab, 
-        setCompletedTab, 
-        setPriorityTab 
-    } = useContext(TabSelectionContext);
+    const { selectedTab } = useContext(TabSelectionContext);
 
     useEffect(() => {
         if (selectedTab === TabSelection.COMPLETED) {
@@ -19,8 +15,6 @@ const TasksContainer = () => {
                 .then((data) => {
                     const updatedData = data.filter((task) => task.status);
                     setTasks(updatedData);
-                    setCompletedTab(true);
-                    setPriorityTab(false);
                 })
                 .catch((e) => console.warn(e));
         } else if (selectedTab === TabSelection.PRIORITY) {
@@ -28,8 +22,6 @@ const TasksContainer = () => {
                 .then((data) => {
                     const updatedData = data.filter((task) => !task.status && task.priority);
                     setTasks(updatedData);
-                    setPriorityTab(true);
-                    setCompletedTab(false);
                 })
                 .catch((e) => console.warn(e));
         } else {
@@ -37,8 +29,6 @@ const TasksContainer = () => {
             .then((data) => {
                 const updatedData = data.filter((task) => !task.status);
                 setTasks(updatedData);
-                setCompletedTab(false);
-                setPriorityTab(false);
             })
             .catch((e) => console.warn(e));
         }

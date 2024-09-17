@@ -1,23 +1,28 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import styles from "./CompletedButton.module.scss";
 import { TabSelectionContext } from "../../contexts/TabSelectionContextProvider";
 import { TabSelection } from "../../enums/TabSelection";
 
 const CompletedButton = () => {
-    const { setSelectedTab, completedTab } = useContext(TabSelectionContext);
-
-    const [selected, setSelected] = useState(false);
+    const { 
+        setSelectedTab, 
+        completedTab, 
+        setCompletedTab,
+        priorityTab,
+        setPriorityTab 
+    } = useContext(TabSelectionContext);
 
     const toggleCompleted = () => {
-        const selectedStatus = !selected;
-        setSelected(selectedStatus);
+        const completedTabValue = !completedTab;
+        setCompletedTab(completedTabValue);
 
-        console.log(selectedStatus);
-
-        if (selectedStatus) {
+        if (completedTabValue) {
             setSelectedTab(TabSelection.COMPLETED);
+            setPriorityTab(false);
         } else {
-            setSelectedTab(TabSelection.NONE);
+            if (!priorityTab) {
+                setSelectedTab(TabSelection.NONE);
+            }
         }
     }
 
